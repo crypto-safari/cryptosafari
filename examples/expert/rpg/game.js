@@ -139,8 +139,12 @@ window.onload = function () {
         ]);
 
         var player = new Sprite(32, 32);
-        player.x = 6 * 16 - 8;
-        player.y = 10 * 16;
+        //if () { //URLあったら引き継ぐ
+
+        //} else {//URLなければ
+            player.x = 6 * 16 - 8;
+            player.y = 10 * 16;
+        //}
         var image = new Surface(96, 128);
         image.draw(game.assets['chara0.gif'], 0, 0, 96, 128, 0, 0, 96, 128);
         player.image = image;
@@ -152,7 +156,7 @@ window.onload = function () {
             this.frame = this.direction * 3 + this.walk;
             var random = Math.random();
             if (this.isMoving) { //動いている
-                if (random > 0.01) {
+                if (random >= 0.01) {
                     this.moveBy(this.vx, this.vy);
 
                     if (!(game.frame % 3)) { //現在のフレーム数を3で割ったあまりが0のとき＝3フレームに一回
@@ -164,7 +168,9 @@ window.onload = function () {
                         this.walk = 1; // walkを1に
                     }
                 } else{
-                    window.location.href = 'https://google.com'; // 通常の遷移
+                    i = player.x ;
+                    j = player.y ;
+                    window.location.href = '../battle/index.html?'+i+'?'+j; // 通常の遷移
 
                 }
             } else { //動いていない
@@ -217,3 +223,4 @@ window.onload = function () {
     game.start();
 
 };
+
