@@ -139,12 +139,22 @@ window.onload = function () {
         ]);
 
         var player = new Sprite(32, 32);
-        //if () { //URLあったら引き継ぐ
+        // URLのパラメータを取得
+        var urlParam = location.search;
 
-        //} else {//URLなければ
+        // URLにパラメータが存在する場合
+        if (urlParam) { //?10?90 [0 ,10, 90]
+            // 「&」が含まれている場合は「&」で分割
+            var param = urlParam.split('?');
+
+            player.x = Number(param[1]);
+            player.y = Number(param[2]);
+            
+        } else { //存在しない場合
             player.x = 6 * 16 - 8;
             player.y = 10 * 16;
-        //}
+        }
+        
         var image = new Surface(96, 128);
         image.draw(game.assets['chara0.gif'], 0, 0, 96, 128, 0, 0, 96, 128);
         player.image = image;
@@ -156,7 +166,7 @@ window.onload = function () {
             this.frame = this.direction * 3 + this.walk;
             var random = Math.random();
             if (this.isMoving) { //動いている
-                if (random >= 0.1) {
+                if (random >= 0.01) {
                     this.moveBy(this.vx, this.vy);
 
                     if (!(game.frame % 3)) { //現在のフレーム数を3で割ったあまりが0のとき＝3フレームに一回
@@ -167,10 +177,10 @@ window.onload = function () {
                         this.isMoving = false; // isMovingをFalseに
                         this.walk = 1; // walkを1に
                     }
-                } else{
-                    i = player.x ;
-                    j = player.y ;
-                    window.location.href = '../battle/index.html?'+i+'?'+j; // 通常の遷移
+                } else {
+                    i = player.x;
+                    j = player.y;
+                    window.location.href = '../battle/index.html?' + i + '?' + j; // 通常の遷移
 
                 }
             } else { //動いていない

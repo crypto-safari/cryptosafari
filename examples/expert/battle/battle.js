@@ -40,7 +40,7 @@ window.onload = function () {
                     this.tl.moveTo(target.x + 185, target.y + 130, 3);
                     this.tl.delay(24).moveTo(this.positionX, this.positionY, 1);
                     target.tl.delay(15).then(function () {
-                        var damage = rand(100) + 200000;
+                        var damage = rand(100) + 1;
                         game.rootScene.addChild(new Damage(target.x + target.width / 2 + 25, target.y, 180, damage));
                         this.hp -= damage;
                     });
@@ -57,19 +57,26 @@ window.onload = function () {
                         var damage = rand(600) + 400;
                         game.rootScene.addChild(new Damage(target.x + target.width / 2 + 25, target.y, 180, damage));
                         this.hp -= damage;
-                        //window.location.href = '../rpg/index.html'; // 通常の遷移
+
                     });
                     break;
                 case 'win':
                 if (rand(100) > 50) {
                     game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, id));
+<<<<<<< HEAD
                 } 
+=======
+                }
+>>>>>>> acd50fab7bc4007dae23d6814bf960c11c7fa3fd
                     this.tl.delay(game.fps / 2).moveBy(0, -32, 3).moveBy(0, 32, 3);
                     this.tl.then(function () { this.action = 'run'; }).moveTo(-this.width, this.positionY, game.fps);
-                    
-                    this.tl.then(function() {window.location.href = '../rpg/index.html';}); // 通常の遷移
+
+                    var urlParam = location.search;
+                    this.tl.then(function() {window.location.href = '../rpg/index.html'+urlParam;}); // 通常の遷移
+
 
                     break;
+
                 default: break;
             }
             this.command = this.targetEnemy = '';
@@ -175,11 +182,18 @@ window.onload = function () {
         } 
 
         enemy.x = -enemy.width;
+<<<<<<< HEAD
         enemy.y = -20;
         enemy.scaleX = 0.2;
         enemy.scalaY = 0.2;
         enemy.tl.moveX(-50, game.fps / 4);
         enemy.hp = rand(1000);
+=======
+        enemy.y = 80;
+        enemy.scaleX = -1;
+        enemy.tl.moveX(80, game.fps / 4);
+        enemy.hp = 100;
+>>>>>>> acd50fab7bc4007dae23d6814bf960c11c7fa3fd
         enemy.inputCount = game.fps * 8;
         enemy.addEventListener(enchant.Event.ENTER_FRAME, function () {
             if (this.hp < 1) this.action = 'disappear';
