@@ -10,7 +10,7 @@ window.onload = function () {
         'http://jsrun.it/assets/b/K/5/V/bK5VO.png'
     ];
     var game = new Game(320, 320);
-    game.fps = 1000;
+    game.fps = 24;
     if (PRELOAD_MATERIAL) game.preload(PRELOAD_MATERIAL);
 
     var Player = enchant.Class.create(Avatar, {
