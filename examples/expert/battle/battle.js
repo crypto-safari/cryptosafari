@@ -55,7 +55,7 @@ window.onload = function () {
                         var damage = rand(600) + 400;
                         game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, damage));
                         this.hp -= damage;
-                        //window.location.href = '../rpg/index.html'; // 通常の遷移
+
                     });
                     break;
                 case 'win':
@@ -64,16 +64,19 @@ window.onload = function () {
                     game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, id));
 
                 } else {
-                    const alert = "残念！！";
+                    const alert = 999;
                     game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, alert));
 
                 }
                     this.tl.delay(game.fps / 2).moveBy(0, -32, 3).moveBy(0, 32, 3);
                     this.tl.then(function () { this.action = 'run'; }).moveTo(-this.width, this.positionY, game.fps);
+
                     
                     this.tl.then(function() {window.location.href = '../rpg/index.html';}); // 通常の遷移
 
+
                     break;
+
                 default: break;
             }
             this.command = this.targetEnemy = '';
@@ -149,7 +152,7 @@ window.onload = function () {
         enemy.y = 80;
         enemy.scaleX = -1;
         enemy.tl.moveX(80, game.fps / 4);
-        enemy.hp = 1000;
+        enemy.hp = 100;
         enemy.inputCount = game.fps * 8;
         enemy.addEventListener(enchant.Event.ENTER_FRAME, function () {
             if (this.hp < 1) this.action = 'disappear';
