@@ -10,7 +10,7 @@ window.onload = function () {
         'http://jsrun.it/assets/b/K/5/V/bK5VO.png'
     ];
     var game = new Game(320, 320);
-    game.fps = 24;
+    game.fps = 1000;
     if (PRELOAD_MATERIAL) game.preload(PRELOAD_MATERIAL);
 
     var Player = enchant.Class.create(Avatar, {
@@ -55,13 +55,16 @@ window.onload = function () {
                         var damage = rand(600) + 400;
                         game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, damage));
                         this.hp -= damage;
-                        window.location.href = '../rpg/index.html'; // 通常の遷移
                     });
                     break;
                 case 'win':
                     this.tl.delay(game.fps / 2).moveBy(0, -32, 3).moveBy(0, 32, 3);
                     this.tl.then(function () { this.action = 'run'; }).moveTo(-this.width, this.positionY, game.fps);
+                    //this.tl.then(window.location.href = '../rpg/index.html');
+                    //window.location.href = '../rpg/index.html'; // すごいスピードで通常の遷移
+
                     break;
+
                 default: break;
             }
             this.command = this.targetEnemy = '';
@@ -137,7 +140,7 @@ window.onload = function () {
         enemy.y = 80;
         enemy.scaleX = -1;
         enemy.tl.moveX(80, game.fps / 4);
-        enemy.hp = 1000;
+        enemy.hp = 100;
         enemy.inputCount = game.fps * 8;
         enemy.addEventListener(enchant.Event.ENTER_FRAME, function () {
             if (this.hp < 1) this.action = 'disappear';
