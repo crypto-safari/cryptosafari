@@ -166,7 +166,7 @@ window.onload = function () {
             this.frame = this.direction * 3 + this.walk;
             var random = Math.random();
             if (this.isMoving) { //動いている
-                if (random >= 0.1) {
+                if (random >= 0.01) {
                     this.moveBy(this.vx, this.vy);
 
                     if (!(game.frame % 3)) { //現在のフレーム数を3で割ったあまりが0のとき＝3フレームに一回

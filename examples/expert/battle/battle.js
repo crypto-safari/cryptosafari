@@ -38,7 +38,7 @@ window.onload = function () {
                     this.tl.moveTo(target.x + target.width, target.y + target.height - this.height, 3);
                     this.tl.delay(24).moveTo(this.positionX, this.positionY, 1);
                     target.tl.delay(15).then(function () {
-                        var damage = rand(100) + 200000;
+                        var damage = rand(100) + 1;
                         game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, damage));
                         this.hp -= damage;
                     });
@@ -62,17 +62,12 @@ window.onload = function () {
                 if (rand(100) > 50) {
                     const id = rand(15);
                     game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, id));
-
-                } else {
-                    const alert = 999;
-                    game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, alert));
-
                 }
                     this.tl.delay(game.fps / 2).moveBy(0, -32, 3).moveBy(0, 32, 3);
                     this.tl.then(function () { this.action = 'run'; }).moveTo(-this.width, this.positionY, game.fps);
 
-                    
-                    this.tl.then(function() {window.location.href = '../rpg/index.html';}); // 通常の遷移
+                    var urlParam = location.search;
+                    this.tl.then(function() {window.location.href = '../rpg/index.html'+urlParam;}); // 通常の遷移
 
 
                     break;
