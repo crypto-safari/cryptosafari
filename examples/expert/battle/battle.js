@@ -10,7 +10,7 @@ window.onload = function () {
         'http://jsrun.it/assets/b/K/5/V/bK5VO.png'
     ];
     var game = new Game(320, 320);
-    game.fps = 24;
+    game.fps = 100;
     if (PRELOAD_MATERIAL) game.preload(PRELOAD_MATERIAL);
 
     var Player = enchant.Class.create(Avatar, {
@@ -38,7 +38,7 @@ window.onload = function () {
                     this.tl.moveTo(target.x + target.width, target.y + target.height - this.height, 3);
                     this.tl.delay(24).moveTo(this.positionX, this.positionY, 1);
                     target.tl.delay(15).then(function () {
-                        var damage = rand(100) + 1;
+                        var damage = rand(100) + 200000;
                         game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, damage));
                         this.hp -= damage;
                     });
@@ -55,12 +55,24 @@ window.onload = function () {
                         var damage = rand(600) + 400;
                         game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, damage));
                         this.hp -= damage;
-                        window.location.href = '../rpg/index.html'; // 通常の遷移
+                        //window.location.href = '../rpg/index.html'; // 通常の遷移
                     });
                     break;
                 case 'win':
+                if (rand(100) > 50) {
+                    const id = rand(15);
+                    game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, id));
+
+                } else {
+                    const alert = "残念！！";
+                    game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, alert));
+
+                }
                     this.tl.delay(game.fps / 2).moveBy(0, -32, 3).moveBy(0, 32, 3);
                     this.tl.then(function () { this.action = 'run'; }).moveTo(-this.width, this.positionY, game.fps);
+                    
+                    this.tl.then(function() {window.location.href = '../rpg/index.html';}); // 通常の遷移
+
                     break;
                 default: break;
             }
