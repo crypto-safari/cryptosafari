@@ -7,7 +7,9 @@ window.onload = function () {
         'http://jsrun.it/assets/3/0/f/E/30fEq.png',
         'http://jsrun.it/assets/s/Z/V/N/sZVNl.png',
         'http://jsrun.it/assets/g/Z/F/A/gZFAa.gif',
-        'http://jsrun.it/assets/b/K/5/V/bK5VO.png'
+        'http://jsrun.it/assets/b/K/5/V/bK5VO.png',
+        'https://img.atwikiimg.com/www35.atwiki.jp/2532/attach/17/19/Alma%20Orochi%20%25.png',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ9Eke7I3K1gusByRZuNYOpH5ttPyCZmnY4m-1xQzfpaYUsvzN',
     ];
     var game = new Game(320, 320);
     game.fps = 100;
@@ -35,39 +37,33 @@ window.onload = function () {
                 case 'attack':
                     this.action = 'attack';
                     this.energy += 5;
-                    this.tl.moveTo(target.x + target.width, target.y + target.height - this.height, 3);
+                    this.tl.moveTo(target.x + 185, target.y + 130, 3);
                     this.tl.delay(24).moveTo(this.positionX, this.positionY, 1);
                     target.tl.delay(15).then(function () {
                         var damage = rand(100) + 200000;
-                        game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, damage));
+                        game.rootScene.addChild(new Damage(target.x + target.width / 2 + 25, target.y, 180, damage));
                         this.hp -= damage;
                     });
                     break;
                 case 'specialAttack':
                     this.action = 'specialAttack';
                     this.energy = 0;
-                    this.tl.moveTo(target.x + target.width, target.y + target.height - this.height, 3);
+                    this.tl.moveTo(target.x + 185, target.y + 130, 3);
                     this.tl.delay(58);
                     this.tl.moveBy(-128, 0, 3).delay(game.fps);
                     this.tl.moveTo(this.positionX, this.positionY, 1);
                     target.tl.delay(64);
                     target.tl.then(function () {
                         var damage = rand(600) + 400;
-                        game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, damage));
+                        game.rootScene.addChild(new Damage(target.x + target.width / 2 + 25, target.y, 180, damage));
                         this.hp -= damage;
                         //window.location.href = '../rpg/index.html'; // 通常の遷移
                     });
                     break;
                 case 'win':
                 if (rand(100) > 50) {
-                    const id = rand(15);
                     game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, id));
-
-                } else {
-                    const alert = "残念！！";
-                    game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, alert));
-
-                }
+                } 
                     this.tl.delay(game.fps / 2).moveBy(0, -32, 3).moveBy(0, 32, 3);
                     this.tl.then(function () { this.action = 'run'; }).moveTo(-this.width, this.positionY, game.fps);
                     
@@ -143,19 +139,53 @@ window.onload = function () {
         });
         game.rootScene.addChild(energyBar);
 
+        var id = rand(15);
+        if(rand = 0) {
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/g/Z/F/A/gZFAa.gif']);
+        } else if(rand = 1){
+            var enemy = new AvatarMonster(game.assets['http://9leap.net/meruru/draw/draw.php']);
+        } else if(rand = 2){
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/3/0/f/E/30fEq.png']);
+        } else if(rand = 3){
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/b/K/5/V/bK5VO.png']);
+        } else if(rand = 4){
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/6/k/M/p/6kMpi.png']);
+        } else if(rand = 5){
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/a/i/l/c/ailco.png']);
+        } else if(rand = 6){
+            var enemy = new AvatarMonster(game.assets['http://9leap.net/meruru/draw/draw.php']);
+        } else if(rand = 7){
+            var enemy = new AvatarMonster(game.assets['http://9leap.net/meruru/draw/draw.php']);
+        } else if(rand = 8){
+            var enemy = new AvatarMonster(game.assets['http://9leap.net/meruru/draw/draw.php']);
+        } else if(rand = 9){
+            var enemy = new AvatarMonster(game.assets['http://9leap.net/meruru/draw/draw.php']);
+        } else if(rand = 10){
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/3/0/f/E/30fEq.png']);
+        } else if(rand = 11){
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/3/0/f/E/30fEq.png']);
+        } else if(rand = 12){
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/b/K/5/V/bK5VO.png']);
+        } else if(rand = 13){
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/b/K/5/V/bK5VO.png']);
+        } else if(rand = 14){
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/6/k/M/p/6kMpi.png']);
+        } else if(rand = 15){
+            var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/6/k/M/p/6kMpi.png']);
+        } 
 
-        var enemy = new AvatarMonster(game.assets['http://jsrun.it/assets/g/Z/F/A/gZFAa.gif']);
         enemy.x = -enemy.width;
-        enemy.y = 80;
-        enemy.scaleX = -1;
-        enemy.tl.moveX(80, game.fps / 4);
-        enemy.hp = 1000;
+        enemy.y = -20;
+        enemy.scaleX = 0.2;
+        enemy.scalaY = 0.2;
+        enemy.tl.moveX(-50, game.fps / 4);
+        enemy.hp = rand(1000);
         enemy.inputCount = game.fps * 8;
         enemy.addEventListener(enchant.Event.ENTER_FRAME, function () {
             if (this.hp < 1) this.action = 'disappear';
             if (this.action === 'stop' && player.action === 'stop') this.inputCount--;
             if (this.inputCount < 1) {
-                this.tl.fadeTo(0, 2).fadeTo(1, 2).fadeTo(0, 2).fadeTo(1, 2).then(function () { this.action = 'attack'; });
+                this.tl.fadeTo(0, 2).fadeTo(1, 2).fadeTo(0, 2).fadeTo(1, 2).then(function () { this.action = 'attack'; })
                 this.inputCount = game.fps * 8;
                 player.tl.delay(8).then(function () {
                     this.action = 'damage';
