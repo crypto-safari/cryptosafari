@@ -55,6 +55,7 @@ window.onload = function () {
                         var damage = rand(600) + 400;
                         game.rootScene.addChild(new Damage(target.x + target.width / 2, target.y, target.height - 16, damage));
                         this.hp -= damage;
+                        window.location.href = '../rpg/index.html'; // 通常の遷移
                     });
                     break;
                 case 'win':
