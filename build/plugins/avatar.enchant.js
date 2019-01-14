@@ -63,7 +63,7 @@ enchant.AvatarCharacter = enchant.Class.create(enchant.Sprite, {
          * Array of animation patterns
          * @type {Object}
          */
-		this.animPattern = { "stop": [0]};
+		this.animPattern = { "stop": [ 0]};
 
         /**
          * Frame number of animation
@@ -117,12 +117,11 @@ enchant.AvatarMonster = enchant.Class.create(enchant.AvatarCharacter, {
 	 * @extends enchant.AvatarCharacter
 	 */
 	initialize:function(image){
-		var w = image.width;
-		//var w = ~~(image.width/4);
+		var w = ~~(image.width/4);
 		var h = w;
 		enchant.AvatarCharacter.call(this,w,h);
 		this.image = image;
-		this.animPattern = { "stop": [ 3,3,3,3,3,3],
+		this.animPattern = { "stop": [ 4,4,4,3,3,3],
 										"walk":[ 2,3,4,3],
 										"appear": [ 0,1,7,6,5,4,2,3,-1], 
 										"disappear": [ 3,2,4,5,6,7,1,0,-2], 
